@@ -23,6 +23,12 @@ function App() {
         }),
       });
 
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error('❌ 서버 응답 에러:', errorText);
+        return;
+      }
+
       const data = await res.json();
       setMessages((prev) => [...prev, data]);
     } catch (error) {
